@@ -13,8 +13,29 @@ import vscode from "../../assets/icons/vscode.png";
 import react from "../../assets/icons/react.png";
 import firebase from "../../assets/icons/firebase.png";
 import socket from "../../assets/icons/socket.png";
+import ts from "../../assets/icons/typescript.png"
 
 const data = [
+  {
+    id: 1,
+    image: "https://user-images.githubusercontent.com/93570605/170944498-56402034-3161-44b1-a10a-33d826fd8433.png",
+    title: "Youtube",
+    github: "https://github.com/Shaivaan/Youtube",
+    demo: "https://youtubewhite.netlify.app/",
+    projectType: "Solo Project",
+    des: "YouTube is an American online video sharing and social media platform owned by Google. It was launched on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim.",
+    techStach: [react,html, css, ts, vscode, git, github],
+  },
+  {
+    id: 5,
+    image: "https://user-images.githubusercontent.com/93570605/175881304-a570b272-9ddd-4936-bbec-10cb12f4b4ab.png",
+    title: "Weather App",
+    github: "https://github.com/Shaivaan/Weather-App",
+    demo: "https://merryweather.netlify.app/",
+    projectType: "Solo Project",
+    des: "Weather app which shows the information of weather, temperature, humidity ,sunrise and sunset for mostly all of the locations in India.",
+    techStach: [html, css, js, vscode, git, github, react],
+  },
   {
     id: 6,
     image: "https://user-images.githubusercontent.com/60216125/155872036-fe58a60f-166e-45b5-a1da-f9695b234a6c.png",
@@ -24,16 +45,6 @@ const data = [
     projectType: "Group Project",
     des: "Sephora is a French multinational retailer of personal care and beauty products,feauturing nearly 3,000 brands.",
     techStach: [ html, css, js, vscode, git, github,node],
-  },
-  {
-    id: 5,
-    image: whatsapp,
-    title: "Whatsapp CLONE",
-    github: "https://github.com/sanjeetSangam/whatsapp",
-    demo: "https://chats-open.netlify.app/",
-    projectType: "Group Project",
-    des: "Whatsapp is social media platform where people through contacts or phone number come to meet and chat, share things and so on.",
-    techStach: [html, css, js, vscode, git, github, react, mongo],
   },
   {
     id: 3,
@@ -62,19 +73,10 @@ const data = [
     github: "https://github.com/Shaivaan/Interview-Book-Frontend",
     demo: "https://interviewbook.netlify.app/",
     projectType: "Solo Project",
-    des: "This project includes the topics which are important for web development interview.This project includes important topics of HTM,CSS,JS and React with it also consists some extra topics.",
+    des: "This project includes the topics which are important for web development interview.It consist important topics of HTML,CSS,JS and React with some extra topics.",
     techStach: [html, css, js, vscode, git, github, mongo, node],
   },
-  {
-    id: 1,
-    image: "https://user-images.githubusercontent.com/93570605/170944498-56402034-3161-44b1-a10a-33d826fd8433.png",
-    title: "Youtube",
-    github: "https://github.com/Shaivaan/Youtube",
-    demo: "https://youtubedark.netlify.app/",
-    projectType: "Solo Project",
-    des: "YouTube is an American online video sharing and social media platform owned by Google. It was launched on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim.",
-    techStach: [react,html, css, js, vscode, git, github],
-  },
+
 ];
 
 const Projects = () => {

@@ -4,7 +4,7 @@ import "./home.css";
 
 
 
-import sanjeet from "../../assets/suit.jpg";
+import sanjeet from "../../assets/nph.png";
 import HeaderSocials from "./HeaderSocials";
 
 import Typewriter from "typewriter-effect";
