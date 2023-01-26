@@ -20,7 +20,7 @@ const data = [
     id: 1,
     image: "https://user-images.githubusercontent.com/93570605/170944498-56402034-3161-44b1-a10a-33d826fd8433.png",
     title: "Youtube",
-    github: "https://github.com/Shaivaan/Youtube",
+    github: "https://github.com/Shaivaan/Youtube-React",
     demo: "https://youtubewhite.netlify.app/",
     projectType: "Solo Project",
     des: "YouTube is an American online video sharing and social media platform owned by Google. It was launched on February 14, 2005, by Steve Chen, Chad Hurley, and Jawed Karim.",
