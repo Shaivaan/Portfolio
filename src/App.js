@@ -10,11 +10,25 @@ import { Projects } from "./pages/Projects";
 import { Skills } from "./pages/Skills";
 import { FirstLoader } from "./components/FirstLoader";
 import Experiences from "./pages/Experiences";
+import { fetchUserData } from "./Firebase/firebase";
+import { useZustandStore } from "./Zustand/Zustand";
+const {REACT_APP_MY_USER_ID} = process.env;
 
 function App() {
+	const setPortfolioData = useZustandStore((state) => state.setPortfolioData);
+
+
 	useEffect(() => {
 		Aos.init({ duration: 2000 });
+		fetchUserData(REACT_APP_MY_USER_ID,handleUserDataValue);
 	}, []);
+
+
+	const handleUserDataValue=(userData)=>{
+		setPortfolioData({...userData});
+	}
+
+
 
 	return (
 		<>

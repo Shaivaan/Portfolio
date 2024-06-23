@@ -5,16 +5,18 @@ import "../styles/navbar.css";
 import { Loader } from "./Loader";
 
 import { RiMenuFoldFill, RiCloseLine } from "react-icons/ri";
+import { useZustandStore } from "../Zustand/Zustand";
 
 export const Navbar = ({ home }) => {
 	const [openMenu, setOpenMenu] = useState(false);
-
+	const portfolioData = useZustandStore((state) => state.portfolioData);
+	const {user} = portfolioData;
 	return (
 		<nav>
 			<Link to="home" offset={-100}>
 				<div className="brand">
 					<Loader />
-					<h3>Sanjeet</h3>
+					<h3>{user?.first_name}</h3>
 				</div>
 			</Link>
 
