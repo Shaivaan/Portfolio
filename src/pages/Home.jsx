@@ -12,6 +12,7 @@ import { images } from "../constants";
 import { AiFillLinkedin, AiFillGithub, AiFillYoutube, AiFillInstagram } from "react-icons/ai";
 
 import { Socials } from "../styled-components/Socials";
+import { useZustandStore } from "../Zustand/Zustand";
 
 const scaleVariants = {
 	whileInView: {
@@ -26,21 +27,23 @@ const scaleVariants = {
 
 export const Home = () => {
 	const [contact] = useState(true);
+	const portfolioData = useZustandStore((state) => state.portfolioData);
+	const {user} = portfolioData;
 
 	return (
 		<section id="home" className="home" data-aos="zoom">
 			<div className="home__content">
 				<h3 data-aos="fade-down">Hello, I am </h3>
-				<h1 data-aos="fade-down">Sanjeet Kumar Sangam</h1>
+				<h1 data-aos="fade-down">{user?.first_name} {user?.last_name}</h1>
 				<h2>
 					<span style={{ color: "#814309" }}>
 						<Typical
 							steps={[
-								"Full Stack Developer 👨‍💻",
+								"React 👨‍💻",
 								1000,
-								"Artist 🎨",
+								"Typescript 😎",
 								1000,
-								"YouTuber 	📽️",
+								"MERN 📽️",
 								1000,
 							]}
 							loop={Infinity}
@@ -52,7 +55,7 @@ export const Home = () => {
 				<div className="home__buttons">
 					<a
 						download
-						href="https://drive.google.com/file/d/1x9k4Xlm5WzUTcQpT95nS786HGFC_Z32q/view"
+						href={user?.showCase?.resume}
 						target="_blank"
 						rel="noreferrer"
 						data-aos="fade-right"
@@ -75,7 +78,7 @@ export const Home = () => {
 
 				<div className="socials__buttons">
 					<a
-						href="https://www.linkedin.com/in/sanjeet-kumar-sangam-09097421a/"
+						href={user?.showCase?.linked_in}
 						target="_blank"
 						rel="noreferrer"
 						data-aos="flip-up"
@@ -86,7 +89,7 @@ export const Home = () => {
 					</a>
 
 					<a
-						href="https://github.com/sanjeetSangam"
+						href={user?.showCase?.github}
 						rel="noreferrer"
 						target="_blank"
 						data-aos="flip-up"
@@ -95,9 +98,8 @@ export const Home = () => {
 							<AiFillGithub />
 						</Socials>
 					</a>
-
-					<a
-						href="https://www.youtube.com/channel/UCcqNqRLGolqqWUCFybH8adw"
+					{user?.showCase?.youtube && <a
+						href={user?.showCase?.youtube}
 						target="_blank"
 						rel="noreferrer"
 						data-aos="flip-up"
@@ -105,9 +107,9 @@ export const Home = () => {
 						<Socials icon="youtube">
 							<AiFillYoutube />
 						</Socials>
-					</a>
-					<a
-						href="https://www.instagram.com/san_arts_official_/"
+					</a>}		
+					{user?.showCase?.instagram && <a
+						href={user?.showCase?.instagram}
 						target="_blank"
 						rel="noreferrer"
 						data-aos="flip-up"
@@ -115,7 +117,7 @@ export const Home = () => {
 						<Socials icon="insta">
 							<AiFillInstagram />
 						</Socials>
-					</a>
+					</a>}
 				</div>
 			</div>
 

@@ -5,18 +5,13 @@
 }
 
 .about__content {
-  /* width: 950px; */
   display: flex;
   justify-content: center;
   gap: 2.8rem;
   margin: auto;
   margin-top: 1rem;
   padding: 1rem 5rem;
-  /* background: #5151; */
-
   color: black;
-  /* background: linear-gradient(to bottom, #094094, #616aae, #010d1f); */
-  /* border-radius: 0.5rem; */
 }
 
 .profile__image {
@@ -24,7 +19,6 @@
   min-height: 300px;
   max-width: 300px;
   max-height: 300px;
-  padding-top: 2rem;
   padding-bottom: 0;
   background: rgb(230, 166, 193);
   background: radial-gradient(
