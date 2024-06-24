@@ -35,6 +35,7 @@ const fetchUserData = async (user_id,handleData) => {
         const workExpData = workExpQuerySnapshot.docs.map(doc => doc.data());
         let portfolioData = {user: userData,projects: projectsData,workExp: workExpData}
         handleData(portfolioData)
+        console.log(portfolioData,'dsadasdasd')
     } catch (error) {handleData({user: {},projects: [],workExp: []})
     }
 };

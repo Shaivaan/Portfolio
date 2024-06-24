@@ -5,9 +5,12 @@ import "../styles/projects.css";
 import { client, urlFor } from "../client";
 import { motion } from "framer-motion";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
+import { useZustandStore } from "../Zustand/Zustand";
 
 export const Projects = () => {
 	const [works, setWorks] = useState([]);
+	const portfolioData = useZustandStore((state) => state.portfolioData);
+	const {projects} = portfolioData;
 	const [filterWork, setFilterWork] = useState([]);
 	const [activeFilter, setActiveFilter] = useState("All");
 	const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
@@ -64,8 +67,8 @@ export const Projects = () => {
 				transition={{ duration: 0.5, delayChildren: 0.5 }}
 				className="app__work-portfolio"
 			>
-				{filterWork?.length > 0 &&
-					filterWork.map((work, index) => (
+				{projects.length > 0 &&
+					projects.map((work, index) => (
 						<motion.div
 							whileInView={{ scale: [0.8, 1] }}
 							transition={{ duration: 0.4 }}
@@ -73,12 +76,15 @@ export const Projects = () => {
 							key={index}
 						>
 							<div className="app__work-img app__flex">
-								{/* <img src={urlFor(work.imgUrl)} alt={work.name} /> */}
+								<img 
+								//  src={urlFor(work.project_image)}
+								 src={work.project_image}
+								 alt={work.title} />
 							</div>
 
 							<div className="app__work-content app__flex">
 								<div className="tech-stacks">
-									{work?.teckStacks?.map((stack) => {
+									{work?.tech_used?.map((stack) => {
 										return (
 											<img
 												// src={urlFor(stack)}
@@ -106,7 +112,7 @@ export const Projects = () => {
 									}}
 									className="project__links app__flex"
 								>
-									<a href={work.projectLink} target="_blank" rel="noreferrer">
+									<a href={work.demo_link} target="_blank" rel="noreferrer">
 										<motion.div
 											whileInView={{ scale: [0.8, 1] }}
 											whileHover={{ scale: [1, 0.9] }}
@@ -116,7 +122,7 @@ export const Projects = () => {
 											<AiFillEye />
 										</motion.div>
 									</a>
-									<a href={work.codeLink} target="_blank" rel="noreferrer">
+									<a href={work.code_link} target="_blank" rel="noreferrer">
 										<motion.div
 											whileInView={{ scale: [0.8, 1] }}
 											whileHover={{ scale: [1, 0.9] }}

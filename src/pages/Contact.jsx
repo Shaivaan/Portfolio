@@ -6,10 +6,12 @@ import { RiInstagramFill } from "react-icons/ri";
 
 import emailjs from "emailjs-com";
 import { Heading } from "../styled-components/Heading";
+import { useZustandStore } from "../Zustand/Zustand";
 
 export const Contact = () => {
 	const form = useRef();
-
+	const portfolioData = useZustandStore((state) => state.portfolioData);
+	const {user} = portfolioData;
 	const sendEmail = (e) => {
 		e.preventDefault();
 		emailjs
@@ -21,11 +23,9 @@ export const Contact = () => {
 			)
 			.then(
 				(result) => {
-					console.log(result.text);
 					e.target.reset();
 				},
 				(error) => {
-					console.log(error.text);
 					e.target.reset();
 				}
 			);
@@ -44,7 +44,7 @@ export const Contact = () => {
 					<article className="contact__option" data-aos="fade-up">
 						<MdEmail className="contact__option-icon" />
 						<h4>Email</h4>
-						<h5 id="mail">asanjeetsangam15@gmail.com</h5>
+						<h5 id="mail">{user?.email}</h5>
 						<a
 							className="mail"
 							href="mailto:asanjeetsangam15@gmail.com"
@@ -52,20 +52,6 @@ export const Contact = () => {
 							rel="noreferrer"
 						>
 							Send a message
-						</a>
-					</article>
-
-					<article className="contact__option" data-aos="fade-up">
-						<RiInstagramFill className="contact__option-icon " />
-						<h4>Instagram</h4>
-						<h5>sanjeet</h5>
-						<a
-							href="https://www.instagram.com/san_arts_official_/"
-							target="_blank"
-							rel="noreferrer"
-							className="instagram"
-						>
-							Visit Instagram
 						</a>
 					</article>
 				</div>
