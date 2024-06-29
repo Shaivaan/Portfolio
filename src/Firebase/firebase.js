@@ -57,7 +57,6 @@ const fetchUserData = async (user_id, handleData, handleLoader) => {
       workExp: workExpData,
     };
     handleData(portfolioData);
-    console.log(portfolioData, "dsadasdasd");
   } catch (error) {
     handleData({ user: {}, projects: [], workExp: [] });
   }

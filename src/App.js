@@ -27,7 +27,6 @@ function App() {
 
 	const handleUserDataValue=(userData)=>{
 		setPortfolioData({...userData});
-
 	}
 
 	if(isLoading){

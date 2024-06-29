@@ -19,7 +19,7 @@ const Experiences = () => {
 	}, []);
 	return (
 		<section id="experience">
-			<div className="heading" data-aos="fade-up" style={{ marginBottom: "1rem" }} key={uuidv4()}>
+			<div className="heading" data-aos="fade-up" style={{ marginBottom: "1rem" }}>
 				<Heading>
 					<h2>Experiences </h2>
 				</Heading>
@@ -34,7 +34,6 @@ const Experiences = () => {
 								color: "#fff",
 							}}
 							contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-							// date={experience.year}
 							iconStyle={{
 								background: "#b5daf8",
 								display: "grid",
@@ -43,17 +42,16 @@ const Experiences = () => {
 							}}
 							icon={
 								<img
-									// src={urlFor(experience.imgUrl)}
 									src={experience.company_logo}
 									style={{
 										width: "80%",
 										objectFit: " contain",
 										mixBlendMode: "multiply",
 									}}
-									// alt={urlFor(experience.imgUrl)}
+									key={uuidv4()}
 								/>
 							}
-							key={experience._id}
+							key={uuidv4()}
 						>
 							<motion.div className="app__skills-exp-item">
 								<div className="app__skills-exp-year">

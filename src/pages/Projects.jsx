@@ -1,67 +1,27 @@
-import React, { useEffect, useState } from "react";
-// import Carousel from "react-elastic-carousel";
+import React, { useState } from "react";
 import { Heading } from "../styled-components/Heading";
 import "../styles/projects.css";
-import { client, urlFor } from "../client";
 import { motion } from "framer-motion";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { useZustandStore } from "../Zustand/Zustand";
-import { react_icon } from "../assets";
+import { imageHandler } from "../Utils/projectUtil";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const Projects = () => {
-	const [works, setWorks] = useState([]);
 	const portfolioData = useZustandStore((state) => state.portfolioData);
 	const {projects} = portfolioData;
-	const [filterWork, setFilterWork] = useState([]);
-	const [activeFilter, setActiveFilter] = useState("All");
 	const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-
-	useEffect(() => {
-		const query = '*[_type == "works"]';
-
-		// client.fetch(query).then((data) => {
-		// 	data.sort((a, b) => new Date(b._createdAt) - new Date(a._createdAt));
-		// 	setWorks(data);
-		// 	setFilterWork(data);
-		// });
-	}, []);
-
-	const handleWorkFilter = (item) => {
-		setActiveFilter(item);
-		setAnimateCard([{ y: 100, opacity: 0 }]);
-
-		setTimeout(() => {
-			setAnimateCard([{ y: 0, opacity: 1 }]);
-
-			if (item === "All") {
-				setFilterWork(works);
-			} else {
-				setFilterWork(works.filter((work) => work.tags.includes(item)));
-			}
-		}, 500);
-	};
+	
 
 	return (
 		<section id="projects" className="projects">
 			<div className="heading" data-aos="fade-up">
 				<Heading>
-					<h2>Projects ({works?.length}) </h2>
+					<h2>Projects ({projects?.length}) </h2>
 				</Heading>
 			</div>
 
-			<div className="app__work-filter">
-				{["MERN", "Web App", "Node Js", "React JS", "All"].map((item, index) => (
-					<div
-						key={index}
-						onClick={() => handleWorkFilter(item)}
-						className={`app__work-filter-item app__flex p-text ${
-							activeFilter === item ? "item-active" : ""
-						}`}
-					>
-						{item}
-					</div>
-				))}
-			</div>
 
 			<motion.div
 				animate={animateCard}
@@ -78,7 +38,6 @@ export const Projects = () => {
 						>
 							<div className="app__work-img app__flex">
 								<img 
-								//  src={urlFor(work.project_image)}
 								 src={work.project_image}
 								 alt={work.title} />
 							</div>
@@ -88,8 +47,8 @@ export const Projects = () => {
 									{work?.tech_used?.map((stack) => {
 										return (
 											<img
-											    src={react_icon}
-												key={stack._key}
+											    src={imageHandler(stack)}
+												key={uuidv4()}
 												alt={stack._key}
 											/>
 										);

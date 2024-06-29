@@ -43,7 +43,9 @@ export const Home = () => {
 								1000,
 								"Typescript 😎",
 								1000,
-								"MERN 📽️",
+								"Node 🙌",
+								1000,
+								"Games 🕹️",
 								1000,
 							]}
 							loop={Infinity}
