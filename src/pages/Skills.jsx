@@ -8,7 +8,7 @@ import { DiReact, DiCss3, DiHtml5 } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
 import { AiFillGithub } from "react-icons/ai";
 import { SiRedux, SiCanva, SiTypescript } from "react-icons/si";
-import { FaJava, FaFigma, FaGitAlt, FaSalesforce, FaSourcetree } from "react-icons/fa";
+import { FaFigma, FaGitAlt} from "react-icons/fa";
 import { TbBrandVscode } from "react-icons/tb";
 
 // backend icons
@@ -86,14 +86,11 @@ export const Skills = () => {
 					<div className="skills__list">
 						<div className="tech">
 							{[
-								{ icon: <FaJava />, name: "Java" },
-								{ icon: <FaSalesforce />, name: "Salesforce" },
 								{ icon: <FaGitAlt />, name: "Git" },
 								{ icon: <AiFillGithub />, name: "Github" },
 								{ icon: <FaFigma />, name: "Figma" },
 								{ icon: <TbBrandVscode />, name: "Vs Code" },
 								{ icon: <SiCanva />, name: "Canva" },
-								{ icon: <FaSourcetree />, name: "Sourcetree" },
 								{ icon: <SiNetlify />, name: "Netlify" },
 								{ icon: <SiHeroku />, name: "Heroku" },
 							].map((techStach, index) => (
