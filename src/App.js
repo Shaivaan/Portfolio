@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Footer } from "./components/Footer";
@@ -16,18 +16,23 @@ const {REACT_APP_MY_USER_ID} = process.env;
 
 function App() {
 	const setPortfolioData = useZustandStore((state) => state.setPortfolioData);
-
+	const [isLoading,setIsDataLoading] = useState(true);
+	const manageLoader=(isLoad)=>{setIsDataLoading(isLoad)}
 
 	useEffect(() => {
 		Aos.init({ duration: 2000 });
-		fetchUserData(REACT_APP_MY_USER_ID,handleUserDataValue);
+		fetchUserData(REACT_APP_MY_USER_ID,handleUserDataValue,()=>manageLoader(false));
 	}, []);
 
 
 	const handleUserDataValue=(userData)=>{
 		setPortfolioData({...userData});
+
 	}
 
+	if(isLoading){
+		return <FirstLoader />;
+	}
 
 
 	return (

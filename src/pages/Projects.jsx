@@ -6,6 +6,7 @@ import { client, urlFor } from "../client";
 import { motion } from "framer-motion";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { useZustandStore } from "../Zustand/Zustand";
+import { react_icon } from "../assets";
 
 export const Projects = () => {
 	const [works, setWorks] = useState([]);
@@ -87,7 +88,7 @@ export const Projects = () => {
 									{work?.tech_used?.map((stack) => {
 										return (
 											<img
-												// src={urlFor(stack)}
+											    src={react_icon}
 												key={stack._key}
 												alt={stack._key}
 											/>
