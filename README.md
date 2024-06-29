@@ -1,23 +1,24 @@
-# portfolio
+# Portfolio
 
-This is my portfolio which is made with reactjs.
+This is my portfolio which is made with ReactJS.
 
 <!-- #HOME -->
 
-<img src="https://pbs.twimg.com/media/FVq0EI9VUAAia21?format=jpg&name=large"></img>
+
+![Screenshot 2024-06-29 161458](https://github.com/Shaivaan/Portfolio/assets/93570605/50f4516e-10c5-47a6-87aa-f295e0be94b4)
 
 
 
 
 # Authors
-- [sanjeetSangam](https://github.com/sanjeetSangam)
+- [Shivanshu Mishra]([https://github.com/sanjeetSangam](https://github.com/Shaivaan))
 
 # How to look up
 
 Go to this link:-
 
 ```
-  https://sanjeet.netlify.app/
+ https://shivanshumishra.netlify.app/
 ```
 
 
