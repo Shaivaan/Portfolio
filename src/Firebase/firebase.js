@@ -45,6 +45,7 @@ const fetchUserData = async (user_id, handleData, handleLoader) => {
     );
     const projectsQuerySnapshot = await getDocs(projectsQuery);
     const projectsData = projectsQuerySnapshot.docs.map((doc) => doc.data());
+    projectsData.sort((a, b) => b.project_order - a.project_order);
     const workExpQuery = query(
       collection(firebaseFirestore, "workExp"),
       where("user_id", "==", user_id)

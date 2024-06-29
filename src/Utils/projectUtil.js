@@ -10,6 +10,7 @@ import {
   redux_icon,
   socket_icon,
   ts_icon,
+  vscode_icon,
   zustand_icon,
 } from "../assets/assets";
 
@@ -35,8 +36,10 @@ const imageHandler = (image) => {
       return redux_icon;
     case "NodeJS":
       return node_icon;
-      case "Zustand":
+    case "Zustand":
       return zustand_icon;
+    case "VScode":
+      return vscode_icon;
     default:
       return socket_icon;
   }

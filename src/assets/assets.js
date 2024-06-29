@@ -10,6 +10,7 @@ import redux_icon from './redux.png';
 import mongo_icon from './icons/mongodb.png';
 import socket_icon from './icons/socket.png';
 import material_ui_icon from './mu5.png';
-import zustand_icon from './zustand.png'
+import zustand_icon from './zustand.png';
+import vscode_icon from './icons/vscode.png';
 
-export {material_ui_icon,react_icon,html_icon,css_icon,ts_icon,firebase_icon,github_icon,js_icon,mongo_icon,node_icon,redux_icon,socket_icon,zustand_icon};
+export {material_ui_icon,react_icon,html_icon,css_icon,ts_icon,firebase_icon,github_icon,js_icon,mongo_icon,node_icon,redux_icon,socket_icon,zustand_icon,vscode_icon};

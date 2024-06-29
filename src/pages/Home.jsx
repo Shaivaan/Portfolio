@@ -45,7 +45,7 @@ export const Home = () => {
 								1000,
 								"Node 🙌",
 								1000,
-								"Games 🕹️",
+								"Gaming 🕹️",
 								1000,
 							]}
 							loop={Infinity}
