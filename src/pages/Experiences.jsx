@@ -55,7 +55,7 @@ const Experiences = () => {
 						>
 							<motion.div className="app__skills-exp-item">
 								<div className="app__skills-exp-year">
-									<p className="bold-text">{secondToYearProvider(experience.joining_date.seconds)} - {experience.is_currently_working ?  'Currently Working' : secondToYearProvider(experience.end_date.seconds) } </p>
+									<p className="bold-text">{secondToYearProvider(experience.joining_date)} - {experience.is_currently_working ?  'Currently Working' : secondToYearProvider(experience.end_date) } </p>
 								</div>
 								<motion.div className="app__skills-exp-works">
 										<div key={experience.role}>
@@ -82,8 +82,8 @@ const Experiences = () => {
 	);
 };
 
-const secondToYearProvider=(seconds)=>{
-	return moment(seconds * 1000).format('MMM YYYY')
+const secondToYearProvider=(time)=>{
+	return moment(time).format('MMM YYYY')
 }
 
 export default Experiences;

@@ -31,39 +31,17 @@ const firebaseFirestore = getFirestore(firebaseApp);
 
 const fetchUserData = async (user_id, handleData, handleLoader) => {
   try {
-    const userDocRef = doc(firebaseFirestore, "users", user_id);
-    const userDocSnapshot = await getDoc(userDocRef);
-
-    let userData = null;
-    if (userDocSnapshot.exists()) {
-      userData = userDocSnapshot.data();
-    }
-
-    const projectsQuery = query(
-      collection(firebaseFirestore, "projects"),
-      where("user_id", "==", user_id)
-    );
-    const projectsQuerySnapshot = await getDocs(projectsQuery);
-    const projectsData = projectsQuerySnapshot.docs.map((doc) => doc.data());
-    projectsData.sort((a, b) => b.project_order - a.project_order);
-    const workExpQuery = query(
-      collection(firebaseFirestore, "workExp"),
-      where("user_id", "==", user_id)
-    );
-    const workExpQuerySnapshot = await getDocs(workExpQuery);
-    const workExpData = workExpQuerySnapshot.docs.map((doc) => doc.data());
-    let portfolioData = {
-      user: userData,
-      projects: projectsData,
-      workExp: workExpData,
-    };
-    handleData(portfolioData);
+    const res = await fetch(`https://career-keeper-be.vercel.app/details?user_id=${user_id}`);
+    // const res = await fetch(`http://localhost:3000/details?user_id=${user_id}`);
+    if (!res.ok) throw new Error('Failed to fetch');
+    const json = await res.json();
+    handleData(json.data);
   } catch (error) {
     handleData({ user: {}, projects: [], workExp: [] });
-  }
-  finally{
+  } finally {
     handleLoader();
   }
 };
+
 
 export { firebaseApp, firebaseFirestore, fetchUserData };
