@@ -9,7 +9,7 @@ export default defineConfig({
   dialect: "postgresql",
   casing: "snake_case",
   dbCredentials: {
-    // Migrations need a direct (non-pooled) connection
-    url: process.env.DATABASE_URL_UNPOOLED!,
+    // Migrations need a direct (non-pooled) connection; verify-full: see src/db/index.ts
+    url: process.env.DATABASE_URL_UNPOOLED!.replace("sslmode=require", "sslmode=verify-full"),
   },
 });
