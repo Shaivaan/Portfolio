@@ -2,6 +2,7 @@ import Image from "next/image";
 import { formatMonth, projectTypeLabels, skillCategoryLabels, socialPlatformLabels } from "@/lib/labels";
 import type { Portfolio } from "@/lib/portfolio";
 import { skillCategory } from "@/db/schema";
+import { CoderIllustration } from "./coder-illustration";
 import { ThemeToggle } from "./theme-toggle";
 
 type Profile = NonNullable<Portfolio["profile"]>;
@@ -76,7 +77,7 @@ function ExternalLink({ href, children, className }: { href: string; children: R
 export function SiteHeader({ name, sections }: { name: string; sections: { id: string; label: string }[] }) {
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-background/80 backdrop-blur">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 py-4">
+      <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-6 py-4">
         <a href="#top" className="font-semibold">
           {name}
         </a>
@@ -100,52 +101,61 @@ export function SiteHeader({ name, sections }: { name: string; sections: { id: s
 export function Hero({ profile, socialLinks }: { profile: Profile; socialLinks: Portfolio["socialLinks"] }) {
   const meta = [profile.focusAreas.join(" · "), profile.location].filter(Boolean).join(" — ");
   return (
-    <section id="top" className="fade-in flex flex-col gap-5 pt-16 pb-14 sm:pt-20">
-      {profile.photoUrl && (
-        <Image
-          src={profile.photoUrl}
-          alt={profile.name}
-          width={88}
-          height={88}
-          priority
-          className="size-22 rounded-full border border-border object-cover"
-        />
-      )}
-      {profile.openToWork && (
-        <p className="inline-flex items-center gap-2 text-sm text-green-700 dark:text-green-300">
-          <span aria-hidden="true" className="size-2 rounded-full bg-green-500" />
-          Open to opportunities
-        </p>
-      )}
-      <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{profile.name}</h1>
-      <p className="max-w-xl text-xl text-muted">{profile.headline}</p>
-      {meta && <p className="text-sm text-muted">{meta}</p>}
-      <div className="mt-2 flex flex-wrap gap-3">
-        {profile.resumeUrl && (
-          <ExternalLink
-            href={profile.resumeUrl}
-            className="inline-flex items-center rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
-          >
-            Resume
-          </ExternalLink>
+    // Text first, illustration beside it on wider screens and below it on phones
+    <section id="top" className="fade-in grid items-center gap-10 pt-12 pb-14 sm:grid-cols-[minmax(0,1fr)_300px] sm:pt-20">
+      <div className="flex flex-col gap-5">
+        {profile.openToWork && (
+          <p className="inline-flex items-center gap-2 text-sm text-green-700 dark:text-green-300">
+            <span aria-hidden="true" className="size-2 rounded-full bg-green-500" />
+            Open to opportunities
+          </p>
         )}
-        {socialLinks.map((link) => (
-          <ExternalLink key={link.id} href={link.url} className={linkButton}>
-            {socialPlatformLabels[link.platform] ?? link.platform}
-          </ExternalLink>
-        ))}
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{profile.name}</h1>
+        <p className="max-w-xl text-xl text-muted">{profile.headline}</p>
+        {meta && <p className="text-sm text-muted">{meta}</p>}
+        <div className="mt-2 flex flex-wrap gap-3">
+          {profile.resumeUrl && (
+            <ExternalLink
+              href={profile.resumeUrl}
+              className="inline-flex items-center rounded-lg bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+            >
+              Resume
+            </ExternalLink>
+          )}
+          {socialLinks.map((link) => (
+            <ExternalLink key={link.id} href={link.url} className={linkButton}>
+              {socialPlatformLabels[link.platform] ?? link.platform}
+            </ExternalLink>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <CoderIllustration />
       </div>
     </section>
   );
 }
 
-export function About({ bio }: { bio: string }) {
+export function About({ bio, photoUrl, name }: { bio: string; photoUrl: string | null; name: string }) {
   return (
     <Section id="about" title="About">
-      <div className="flex max-w-2xl flex-col gap-4 text-lg leading-relaxed">
-        {bio.split(/\n+/).map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
+      <div className={`grid items-start gap-8 ${photoUrl ? "sm:grid-cols-[200px_minmax(0,1fr)]" : ""}`}>
+        {photoUrl && (
+          <div className="relative aspect-[4/5] w-44 overflow-hidden rounded-2xl border border-border sm:w-full">
+            <Image
+              src={photoUrl}
+              alt={name}
+              fill
+              sizes="(min-width: 640px) 200px, 176px"
+              className="object-cover object-[48%_20%]"
+            />
+          </div>
+        )}
+        <div className="flex max-w-2xl flex-col gap-4 text-lg leading-relaxed">
+          {bio.split(/\n+/).map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
       </div>
     </Section>
   );

@@ -46,9 +46,9 @@ export default async function HomePage() {
   return (
     <>
       <SiteHeader name={profile.name} sections={sections.filter((section) => section.id !== "about")} />
-      <main className="mx-auto w-full max-w-3xl px-6">
+      <main className="mx-auto w-full max-w-4xl px-6">
         <Hero profile={profile} socialLinks={portfolio.socialLinks} />
-        {profile.bio && <About bio={profile.bio} />}
+        {profile.bio && <About bio={profile.bio} photoUrl={profile.photoUrl} name={profile.name} />}
         {portfolio.experiences.length > 0 && <Experience items={portfolio.experiences} />}
         {portfolio.projects.length > 0 && <Projects items={portfolio.projects} />}
         {portfolio.skills.length > 0 && <Skills items={portfolio.skills} />}

@@ -58,6 +58,101 @@ body {
   }
 }
 
+@keyframes coder-type {
+  0%,
+  8% {
+    transform: scaleX(0);
+  }
+  22%,
+  88% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes coder-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes coder-tap {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes coder-nod {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-3deg);
+  }
+  60% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes coder-pop {
+  0%,
+  45% {
+    opacity: 0;
+    transform: scale(0.6) translateY(8px);
+  }
+  55%,
+  88% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+@keyframes coder-glow {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes coder-blink-eyes {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes coder-steam {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes coder-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -65,6 +160,49 @@ body {
 
   .fade-in {
     animation: reveal 0.6s ease-out both;
+  }
+
+  /* Hero coder illustration (src/components/site/coder-illustration.tsx). Without motion it
+     shows its finished state: every code line typed, nothing moving. */
+  .coder-line {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: coder-type 7s ease-out infinite;
+  }
+  .coder-cursor {
+    animation: coder-blink 1s steps(1) infinite;
+  }
+  .coder-hand-left,
+  .coder-hand-right {
+    animation: coder-tap 0.36s ease-in-out infinite;
+  }
+  .coder-hand-right {
+    animation-delay: 0.18s;
+  }
+  .coder-head {
+    transform-box: view-box;
+    transform-origin: 300px 214px;
+    animation: coder-nod 3.5s ease-in-out infinite;
+  }
+  /* In sync with the 7 s typing loop: appears once the last line is typed */
+  .coder-chip {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: coder-pop 7s ease-out infinite;
+  }
+  .coder-logo {
+    animation: coder-glow 2.4s ease-in-out infinite;
+  }
+  .coder-eyes {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: coder-blink-eyes 4s ease-in-out infinite;
+  }
+  .coder-steam {
+    animation: coder-steam 2.4s ease-in-out infinite;
+  }
+  .coder-float {
+    animation: coder-float 3.5s ease-in-out infinite;
   }
 
   /* Sections fade up as they scroll into view (browsers without scroll timelines just show them) */
