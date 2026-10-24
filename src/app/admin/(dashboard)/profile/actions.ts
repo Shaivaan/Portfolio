@@ -11,6 +11,7 @@ import {
   deleteFiles,
   type FormState,
   optionalText,
+  optionalUrl,
   requiredText,
   resolveFile,
   splitList,
@@ -19,7 +20,7 @@ import {
 } from "@/lib/admin/form";
 import { requireAdmin } from "@/lib/auth/dal";
 import { PORTFOLIO_TAG } from "@/lib/cache";
-import { IMAGE_TYPES, PDF_TYPES } from "@/lib/storage";
+import { IMAGE_TYPES } from "@/lib/storage";
 
 const schema = z.object({
   name: requiredText("Name", 100),
@@ -27,6 +28,7 @@ const schema = z.object({
   bio: optionalText(3000),
   email: z.email({ error: "Enter a valid email address." }),
   location: optionalText(100),
+  resumeUrl: optionalUrl,
   openToWork: checkbox,
 });
 
@@ -43,16 +45,14 @@ export async function saveProfile(_prev: FormState, formData: FormData): Promise
 
   const [current] = await db.select().from(profile).limit(1);
 
-  let photo, resume;
+  let photo;
   try {
     photo = await resolveFile(formData, "photo", "profile", IMAGE_TYPES, current?.photoKey ?? null);
-    resume = await resolveFile(formData, "resume", "resume", PDF_TYPES, current?.resumeKey ?? null);
   } catch (error) {
-    await deleteFiles(photo?.uploaded);
     return uploadErrorState(error);
   }
 
-  const values = { ...parsed.data, focusAreas, photoKey: photo.key, resumeKey: resume.key };
+  const values = { ...parsed.data, focusAreas, photoKey: photo.key };
   try {
     if (current) {
       await db.update(profile).set(values).where(eq(profile.id, current.id));
@@ -60,12 +60,12 @@ export async function saveProfile(_prev: FormState, formData: FormData): Promise
       await db.insert(profile).values(values);
     }
   } catch (error) {
-    await deleteFiles(photo.uploaded, resume.uploaded);
+    await deleteFiles(photo.uploaded);
     throw error;
   }
 
   // Old files are removed after the response is sent, so saving doesn't wait on storage
-  after(() => deleteFiles(photo.staleKey, resume.staleKey));
+  after(() => deleteFiles(photo.staleKey));
   updateTag(PORTFOLIO_TAG);
   refresh();
   return { message: "Profile saved." };

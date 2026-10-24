@@ -20,7 +20,6 @@ export const IMAGE_TYPES: Record<string, string> = {
   "image/gif": "gif",
   "image/svg+xml": "svg",
 };
-export const PDF_TYPES: Record<string, string> = { "application/pdf": "pdf" };
 
 /** Thrown for bad uploads; its message is safe to show in the admin form. */
 export class UploadError extends Error {}

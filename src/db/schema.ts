@@ -61,7 +61,7 @@ export const profile = pgTable("profile", {
   email: text().notNull(),
   location: text(), // city only, e.g. "Bengaluru, India"
   photoKey: text(),
-  resumeKey: text(), // resume PDF
+  resumeUrl: text(), // link to the resume, e.g. a Google Drive share link
   openToWork: boolean().notNull().default(false),
   updatedAt: timestamp({ withTimezone: true })
     .notNull()

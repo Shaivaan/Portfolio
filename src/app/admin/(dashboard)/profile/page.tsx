@@ -50,12 +50,13 @@ export default async function ProfilePage() {
           currentUrl={current?.photoKey ? fileUrl(current.photoKey) : null}
           hint="JPG, PNG, WebP, AVIF, GIF or SVG, up to 4 MB."
         />
-        <FileField
-          name="resume"
-          label="Resume"
-          kind="pdf"
-          currentUrl={current?.resumeKey ? fileUrl(current.resumeKey) : null}
-          hint="PDF, up to 4 MB."
+        <TextField
+          name="resumeUrl"
+          label="Resume link"
+          type="url"
+          defaultValue={current?.resumeUrl}
+          placeholder="https://drive.google.com/file/d/…/view"
+          hint="Google Drive: Share → General access → “Anyone with the link”, then copy the link."
         />
         <CheckboxField
           name="openToWork"
