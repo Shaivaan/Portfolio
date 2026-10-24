@@ -7,7 +7,9 @@ export default defineConfig({
   schema: "./src/db/schema.ts",
   out: "./drizzle",
   dialect: "postgresql",
+  casing: "snake_case",
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    // Migrations need a direct (non-pooled) connection
+    url: process.env.DATABASE_URL_UNPOOLED!,
   },
 });
