@@ -17,7 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `${profile.name} — ${profile.headline}`,
     description: profile.bio ?? profile.headline,
+    // The image itself comes from app/opengraph-image.tsx
     openGraph: { title: profile.name, description: profile.headline, type: "profile" },
+    twitter: { card: "summary_large_image", title: profile.name, description: profile.headline },
   };
 }
 
