@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { loadInter } from "@/lib/og/font";
 import { getPortfolio } from "@/lib/portfolio";
 
 // The preview card shown when the site link is shared (WhatsApp, LinkedIn, X, Discord...).
@@ -17,20 +18,6 @@ const colors = {
   green: "#4ade80",
 };
 
-/** Inter from Google Fonts; falls back to the built-in font if the download fails */
-async function loadFont(weight: 400 | 700, text: string) {
-  try {
-    const css = await fetch(
-      `https://fonts.googleapis.com/css2?family=Inter:wght@${weight}&text=${encodeURIComponent(text)}`,
-    ).then((res) => res.text());
-    const url = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
-    if (!url) return null;
-    return await fetch(url).then((res) => res.arrayBuffer());
-  } catch {
-    return null;
-  }
-}
-
 export default async function OpenGraphImage() {
   const { profile } = await getPortfolio();
   const name = profile?.name ?? "Portfolio";
@@ -40,7 +27,7 @@ export default async function OpenGraphImage() {
   const photoUrl = profile?.photoUrl && /\.(jpe?g|png)$/i.test(profile.photoUrl) ? profile.photoUrl : null;
 
   const allText = `${name}${headline}${meta}Open to opportunities</>`;
-  const [regular, bold] = await Promise.all([loadFont(400, allText), loadFont(700, allText)]);
+  const [regular, bold] = await Promise.all([loadInter(400, allText), loadInter(700, allText)]);
   const fonts = [
     ...(regular ? [{ name: "Inter", data: regular, weight: 400 as const, style: "normal" as const }] : []),
     ...(bold ? [{ name: "Inter", data: bold, weight: 700 as const, style: "normal" as const }] : []),
